@@ -1,0 +1,82 @@
+1- how super function handle multiple inheritance?
+Python will start by looking at First class, and, if First class doesn't have the attribute, then it will look at Second class.
+ex:
+	class First(object):
+    		def __init__(self):
+        		print("first");
+
+	class Second(First):
+    		def __init__(self,aa):
+         		print("second");
+	class Third(First):
+    		def __init__(self):
+        		print("third");
+	class Fourth(Second, Third):
+    		def __init__(self):
+        		super(Fourth, self).__init__()
+        		print("that's it");
+	f=Fourth();
+output will be:
+	second
+	that's it
+but if we make it like this
+	class First(object):
+    		def __init__(self):
+        		print("first");
+
+	class Second(First):
+    		pass;
+	class Third(First):
+    		def __init__(self):
+        		print("third");
+	class Fourth(Second, Third):
+    		def __init__(self):
+        		super(Fourth, self).__init__()
+        		print("that's it");
+	f=Fourth();
+output will be:
+	third
+	that's it
+
+to handle the multiple inheritance:
+class A:
+	def __init__(self):
+		print("A");
+class B:
+	def __init__(self):
+		print("B");
+class c(A,B):
+	def __init__(self):
+		A.__init__(self);
+		B.__init__(self);
+
+2- if human and maammal have the same method like eat but wtih diffrent implementation.when child [employee] calls eat method how python handle this case?
+
+it will call the method in the first class in inheritance
+ex:
+	class human():
+    		def eat(self):
+        		print("human");
+	class mammal():
+    		def eat(self):
+        		print("mammal");
+	class emp(mammal,human):
+    		def __init__(self):
+        		super(emp,self).eat();
+	e=emp();
+output will be:
+	mammal
+but if we changed the order of inheritance
+ex:
+	class human():
+    		def eat(self):
+        		print("human");
+	class mammal():
+    		def eat(self):
+        		print("mammal");
+	class emp(human,mammal):
+    		def __init__(self):
+        		super(emp,self).eat();
+	e=emp();
+output will be:
+	human

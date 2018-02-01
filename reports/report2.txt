@@ -1,0 +1,23 @@
+we can not make two method overloading like
+class human:
+    def sayhello(self):
+        print("hello");
+    def sayhello(self,name):
+        print("hello "+name);
+o=human();
+o.sayhello();
+o.sayhello("adel");    
+
+but we can make overloading by using default arguments
+class human:
+    def sayhello(self,name=None):
+        if name==None:
+	    print('hello');
+	else:
+	    print('hello '+name);
+o=human();
+o.sayhello();
+o.sayhello("adel");    
+output will be
+	hello
+	hello adel
