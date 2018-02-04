@@ -26,6 +26,7 @@ class person:
             money-=10;
         return money;
 class car:
+    name='';
     def __init__(self,name):
         self.name=name;
         self.__velocity=0;
@@ -68,12 +69,13 @@ class car:
             self.__fuelrate=0;
 
 class employee(person):
-    def __init__(self,id,name,carname,distancetowork):
+    def __init__(self,id,name,distancetowork):
         person.__init__(self,name);
         self.__id=id;
         self.__distnacetowork=distancetowork;
         self.__car='';
-        self.c=car(carname);
+        print(car.name);
+        self.c=car(car.name);
         self.__email=''; 
         self.__salary=0;
     moods=('happy','tired','lazy');
@@ -133,9 +135,8 @@ class office:
     def reward(self):
         pass;
 
-
-emp=employee(1,"samy","128",20);
-c=car("128");
+c=car("fiat 128");
+emp=employee(1,"samy",20);
 p=office("iti");
-emp.refuel(100);
+emp.refuel();
 emp.drive(20,20);
